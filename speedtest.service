@@ -1,0 +1,11 @@
+[Unit]
+Description=Run a speedtest
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/speedtest.sh
+
+
+[Install]
+WantedBy=multi-user.target
