@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
+User=zabbix
 ExecStart=/usr/bin/speedtest.sh
 
 [Install]
