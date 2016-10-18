@@ -2,7 +2,7 @@
 
 ## Installation
 
-- Copy `speedtest.sh` to `/usr/bin`
+- Copy `speedtest.sh` to `/usr/bin`: `cp speedtest.sh /usr/bin`
 - Make it executable: `chmod +x /usr/bin/speedtest.sh`
 - Install the systemd service and timer:
 `cp speedtest.service speedtest.timer /etc/systemd/system`
