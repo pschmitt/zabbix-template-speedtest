@@ -6,6 +6,5 @@ After=network.target
 Type=simple
 ExecStart=/usr/bin/speedtest.sh
 
-
 [Install]
 WantedBy=multi-user.target
