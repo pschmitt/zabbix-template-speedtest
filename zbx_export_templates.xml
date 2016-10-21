@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.2</version>
-    <date>2016-10-18T14:03:19Z</date>
+    <date>2016-10-21T07:11:27Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -64,7 +64,7 @@
                 </item>
                 <item>
                     <name>Speedtest - PING</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
