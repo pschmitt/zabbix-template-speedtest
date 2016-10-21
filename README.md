@@ -9,4 +9,4 @@
 - Start and enable the timer: `systemctl enable --now speedtest.timer`
 - Import the zabbix-agent config:
 `cp speedtest.conf /etc/zabbix/zabbix_agentd.conf.d`
-- Import the `zbx_export_templates.xml` on your Zabbix server
+- Import the `template_speedtest.xml` on your Zabbix server
