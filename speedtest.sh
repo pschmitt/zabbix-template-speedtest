@@ -24,7 +24,12 @@ case "$1" in
         awk '/Ping/ { print $2 }' "$CACHE_FILE"
         ;;
     *)
-        speedtest --secure --simple > "$CACHE_FILE"
+        if speedtest --help | grep -q -- --secure >/dev/null 2>&1
+        then
+            speedtest --secure --simple > "$CACHE_FILE"
+        else
+            speedtest --simple > "$CACHE_FILE"
+        fi
         ;;
 esac
 
