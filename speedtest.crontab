@@ -1,0 +1,1 @@
+*/5 * * * * /etc/zabbix_agentd.conf.d/bin/speedtest.sh
