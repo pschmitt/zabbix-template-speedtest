@@ -15,7 +15,7 @@ usage() {
   echo "--run: Run speedtest"
 }
 
-bits_to_mbit() {
+bytes_to_mbit() {
   echo "scale=2; $1 / 125000" | bc -l
 }
 
@@ -32,10 +32,10 @@ case "$1" in
     exit 0
     ;;
   -d|--download)
-    bits_to_mbit "$(jq -r '.download.bandwidth' "$DATA_FILE")"
+    bytes_to_mbit "$(jq -r '.download.bandwidth' "$DATA_FILE")"
     ;;
   -u|--upload)
-    bits_to_mbit "$(jq -r '.upload.bandwidth' "$DATA_FILE")"
+    bytes_to_mbit "$(jq -r '.upload.bandwidth' "$DATA_FILE")"
     ;;
   -j|--jitter)
     jq -r '.ping.jitter' "$DATA_FILE"
