@@ -3,6 +3,7 @@
 ## Installation (Generic x86_64)
 
 - Install [speedtest-cli](https://www.speedtest.net/apps/cli)
+- Copy `speedtest.sh` to `/etc/zabbix/bin`
 - Make it executable: `chmod +x /etc/zabbix/bin/speedtest.sh`
 - Install the systemd service and timer: `cp speedtest.service speedtest.timer /etc/systemd/system`
 - Start and enable the timer: `systemctl enable --now speedtest.timer`
