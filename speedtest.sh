@@ -50,7 +50,7 @@ case "$1" in
     name="$(echo "$data" | jq -r '.name')"
     location="$(echo "$data" | jq -r '.location')"
     country="$(echo "$data" | jq -r '.country')"
-    echo "$name ($id) - $location ($country)"
+    echo "$id: $name @$location ($country)"
     ;;
   -t|--timestamp)
     jq -r '.timestamp | fromdate' "$DATA_FILE"
