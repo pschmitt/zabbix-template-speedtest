@@ -6,6 +6,7 @@ DATA_FILE=/tmp/speedtest.json
 
 usage() {
   echo "Usage: \"$(basename "$0")\" OPTION"
+  echo
   echo "-u: Display last measured upload speed"
   echo "-d: Display last measured download speed"
   echo "-j: Display last measured jitter"
