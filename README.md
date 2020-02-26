@@ -25,7 +25,7 @@
 
 ###  Speedtest in a container
 
-Check out pschmitt/speedtest:cron on [Docker Hub](https://hub.docker.com/repository/docker/pschmitt/speedtest/general) ([GitHub](https://github.com/pschmitt/docker-ookla-speedtest-cli))
+Check out pschmitt/speedtest:cron on [Docker Hub](https://hub.docker.com/repository/docker/pschmitt/speedtest/general)
 
 ### Zabbix-agent 
 
