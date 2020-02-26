@@ -62,5 +62,3 @@ services:
       - ZBX_HOSTNAMEITEM=system.hostname
       - ZBX_SERVER_HOST=zabbix.example.com
 ```
-
-# vim: set ft=markdown et ts=2 sw=2 :
