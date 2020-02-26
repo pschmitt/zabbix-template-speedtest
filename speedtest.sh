@@ -1,77 +1,66 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ash
 
 set -e
 
-CACHE_FILE=/tmp/speedtest.log
-LOCK_FILE=/tmp/speedtest.lock
+DATA_FILE=/tmp/speedtest.json
 
-run_speedtest() {
-    cd "$(readlink -f "$(dirname "$0")")" || exit 9
+usage() {
+  echo "Usage: \"$(basename "$0")\" OPTION"
+  echo "-u: Display last measured upload speed"
+  echo "-d: Display last measured download speed"
+  echo "-j: Display last measured jitter"
+  echo "-p: Display last measured ping latency"
+  echo "-t: Display last measurement timestamp"
+  echo "-s: Display last server used for measurements"
+  echo "--run: Run speedtest"
+}
 
-    # Lock
-    if [[ -e "$LOCK_FILE" ]]
-    then
-        echo "A speedtest is already running" >&2
-        exit 2
-    fi
-    touch "$LOCK_FILE"
-    trap "rm -rf $LOCK_FILE" EXIT HUP INT QUIT PIPE TERM
-
-    local output date location_id location ping download upload
-    local download_mb upload_mb
-
-    output=$(./speedtest -r)
-
-    # Debug
-    # output='2017-09-22 09:15:02 +0000|4997|"inexio (Saarlouis, Germany)"|30.30|82121|19392'
-    # sleep 10
-
-    echo "Output: $output"
-
-    # Extract fields
-    date=$(echo "$output" | cut -f1 -d '|')
-    location_id=$(echo "$output" | cut -f2 -d '|')
-    location=$(echo "$output" | cut -f3 -d '|' | sed 's/^"\(.*\)"$/\1/g')
-    ping=$(echo "$output" | cut -f4 -d '|')
-    download=$(echo "$output" | cut -f5 -d '|')
-    upload=$(echo "$output" | cut -f6 -d '|')
-
-    # Convert to MBit/s
-    download_mb=$(echo "$download" | awk '{ printf("%.2f\n", $1 / 1024) }')
-    upload_mb=$(echo "$upload" | awk '{ printf("%.2f\n", $1 / 1024) }')
-
-    {
-        echo "Date: $date"
-        echo "Server: $location [${location_id}]"
-        echo "Ping: $ping ms"
-        echo "Download: $download bit/s"
-        echo "Upload: $upload bit/s"
-        echo "Download (MB): $download_mb Mbit/s"
-        echo "Upload (MB): $upload_mb Mbit/s"
-    } > "$CACHE_FILE"
-
-    # Make sure to remove the lock file (may be redundant)
-    rm -rf "$LOCK_FILE"
+bits_to_mbit() {
+  echo "scale=2; $1 / 125000" | bc -l
 }
 
 case "$1" in
-    -c|--cached)
-        cat "$CACHE_FILE"
-        ;;
-    -u|--upload)
-        awk '/Upload \(MB\)/ { print $3 }' "$CACHE_FILE"
-        ;;
-    -d|--download)
-        awk '/Download \(MB\)/ { print $3 }' "$CACHE_FILE"
-        ;;
-    -p|--ping)
-        awk '/Ping/ { print $2 }' "$CACHE_FILE"
-        ;;
-    -f|--force)
-        rm -rf "$LOCK_FILE"
-        run_speedtest
-        ;;
-    *)
-        run_speedtest
-        ;;
+  -f|--data-file)
+    DATA_FILE="$2"
+    shift 2
+    ;;
+esac
+
+case "$1" in
+  -h|--help|help)
+    usage
+    exit 0
+    ;;
+  -d|--download)
+    bits_to_mbit "$(jq -r '.download.bandwidth' "$DATA_FILE")"
+    ;;
+  -u|--upload)
+    bits_to_mbit "$(jq -r '.upload.bandwidth' "$DATA_FILE")"
+    ;;
+  -j|--jitter)
+    jq -r '.ping.jitter' "$DATA_FILE"
+    ;;
+  -p|--ping)
+    jq -r '.ping.latency' "$DATA_FILE"
+    ;;
+  -s|--server)
+    data="$(jq -r '.server' "$DATA_FILE")"
+    id="$(echo "$data" | jq -r '.id')"
+    name="$(echo "$data" | jq -r '.name')"
+    location="$(echo "$data" | jq -r '.location')"
+    country="$(echo "$data" | jq -r '.country')"
+    echo "$name ($id) - $location ($country)"
+    ;;
+  -t|--timestamp)
+    jq -r '.timestamp | fromdate' "$DATA_FILE"
+    ;;
+  -r|--run)
+    if speedtest --accept-license --accept-gdpr -f json > "${DATA_FILE}.new"
+    then
+      mv "${DATA_FILE}.new" "$DATA_FILE"
+    fi
+    ;;
+  *)
+    usage
+    exit 2
 esac

@@ -2,7 +2,7 @@
 
 ## Installation (Generic x86_64)
 
-- Copy the speedtest binary (`bin/speedtest-linux-amd64`) and `speedtest.sh` to `/etc/zabbix/bin`
+- Install [speedtest-cli](https://www.speedtest.net/apps/cli)
 - Make them both executable: `chmod +x /etc/zabbix/bin/speedtest /etc/zabbix/bin/speedtest.sh`
 - Install the systemd service and timer: `cp speedtest.service speedtest.timer /etc/systemd/system`
 - Start and enable the timer: `systemctl enable --now speedtest.timer`
@@ -12,9 +12,10 @@
 
 ## Installation (OpenWRT)
 
-- Copy the speedtest binary (`bin/speedtest-linux-arm-static`) and `speedtest.sh` to `/etc/zabbix_agentd.conf.d/bin`
-- Make them both executable: `chmod +x /etc/zabbix_agentd.conf.d/bin/speedtest /etc/zabbix_agentd.conf.d/bin/speedtest.sh`
-- Import the zabbix-agent config: `cp speedtest.conf /etc/zabbix_agentd.conf.d`
+- Install [speedtest-cli](https://www.speedtest.net/apps/cli) by placing the binary in your `$PATH`
+- Copy `speedtest.sh` to `/etc/zabbix_agentd.conf.d/bin`
+- Make it executable: `chmod +x /etc/zabbix_agentd.conf.d/bin/speedtest.sh`
+- Import the zabbix-agent config: `cp speedtest.openwrt.conf /etc/zabbix_agentd.conf.d`
 - Restart zabbix-agent: `/etc/init.d/zabbix-agentd restart`
 - Install the cron job: `crontab -e` -> Add the content of `speedtest.crontab`
 - Import `template_speedtest.xml` on your Zabbix server
