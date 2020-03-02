@@ -134,7 +134,7 @@ eval set -- "$PARAMS"
 
 if [[ "$ACTION" != "run" ]]
 then
-  if data_is_outdated
+  if [[ "$MAX_AGE" -gt 0 ]] && data_is_outdated
   then
     echo "Data is outdated. MAX_AGE is set to ${MAX_AGE} seconds. Please update with --run." >&2
     exit 5
