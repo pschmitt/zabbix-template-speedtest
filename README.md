@@ -55,7 +55,7 @@ services:
     network_mode: host
     pid: host
     volumes:
-      - "./config/bin:/etc/zabbix/bin:ro"
+      - "./config/bin:/zabbix/bin:ro"
       - "./config/zabbix_agentd.d:/etc/zabbix/zabbix_agentd.d:ro"
       - "./data/speedtest:/data/speedtest:ro"
     environment:
