@@ -11,7 +11,7 @@
         <template>
             <template>Speedtest</template>
             <name>Speedtest</name>
-            <description>Check the ping status, up and download bandwith</description>
+            <description>Check the ping status, up and download bandwidth</description>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -19,7 +19,7 @@
             </groups>
             <applications>
                 <application>
-                    <name>Bandwith</name>
+                    <name>Bandwidth</name>
                 </application>
             </applications>
             <items>
@@ -31,7 +31,7 @@
                     <units>Mbit/s</units>
                     <applications>
                         <application>
-                            <name>Bandwith</name>
+                            <name>Bandwidth</name>
                         </application>
                     </applications>
                     <request_method>POST</request_method>
@@ -44,7 +44,7 @@
                     <units>ms</units>
                     <applications>
                         <application>
-                            <name>Bandwith</name>
+                            <name>Bandwidth</name>
                         </application>
                     </applications>
                 </item>
@@ -56,7 +56,7 @@
                     <units>ms</units>
                     <applications>
                         <application>
-                            <name>Bandwith</name>
+                            <name>Bandwidth</name>
                         </application>
                     </applications>
                     <request_method>POST</request_method>
@@ -69,7 +69,7 @@
                     <value_type>TEXT</value_type>
                     <applications>
                         <application>
-                            <name>Bandwith</name>
+                            <name>Bandwidth</name>
                         </application>
                     </applications>
                 </item>
@@ -79,7 +79,7 @@
                     <delay>5m</delay>
                     <applications>
                         <application>
-                            <name>Bandwith</name>
+                            <name>Bandwidth</name>
                         </application>
                     </applications>
                 </item>
@@ -91,7 +91,7 @@
                     <units>Mbit/s</units>
                     <applications>
                         <application>
-                            <name>Bandwith</name>
+                            <name>Bandwidth</name>
                         </application>
                     </applications>
                     <request_method>POST</request_method>
@@ -101,7 +101,7 @@
     </templates>
     <graphs>
         <graph>
-            <name>Speedtest - Bandwith</name>
+            <name>Speedtest - Bandwidth</name>
             <graph_items>
                 <graph_item>
                     <color>1A7C11</color>

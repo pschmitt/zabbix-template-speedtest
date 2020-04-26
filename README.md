@@ -6,6 +6,7 @@
 - Copy `zbx-speedtest.sh` to `/etc/zabbix/bin`
 - Make it executable: `chmod +x /etc/zabbix/bin/zbx-speedtest.sh`
 - Install the systemd service and timer: `cp systemd/{zabbix-speedtest.service,zabbix-speedtest.timer} /etc/systemd/system`
+- Ensure `User` in `systemd/zabbix-speedtest.service` corresponds to the Zabbix Agent user on your system, eg. on Ubuntu this is `zabbix`.
 - Start and enable the timer: `systemctl enable --now zabbix-speedtest.timer`
 - Import the zabbix-agent config: `cp zabbix_agentd.d/speedtest.conf /etc/zabbix/zabbix_agentd.conf.d`
 - Restart zabbix-agent: `sudo systemctl restart zabbix-agent`
