@@ -3,7 +3,7 @@
 ## Installation (Generic x86_64)
 
 - Install [speedtest-cli](https://www.speedtest.net/apps/cli)
-- Copy `zbx-speedtest.sh` to `/etc/zabbix/bin`
+- Copy `zbx-speedtest.sh` to `/etc/zabbix/bin` (If the bin directory does not exist, create it `sudo mkdir /etc/zabbix/bin`).
 - Make it executable: `chmod +x /etc/zabbix/bin/zbx-speedtest.sh`
 - Install the systemd service and timer: `cp systemd/{zabbix-speedtest.service,zabbix-speedtest.timer} /etc/systemd/system`
 - Ensure `User` in `systemd/zabbix-speedtest.service` corresponds to the Zabbix Agent user on your system, eg. on Ubuntu this is `zabbix`.
