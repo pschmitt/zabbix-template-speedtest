@@ -1,5 +1,10 @@
 # Zabbix Speedtest template
 
+## Dependencies
+
+- [bc](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
+- [jq](https://stedolan.github.io/jq/)
+
 ## Installation (Generic x86_64)
 
 - Install [speedtest-cli](https://www.speedtest.net/apps/cli)
