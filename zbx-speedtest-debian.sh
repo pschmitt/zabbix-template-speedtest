@@ -162,7 +162,7 @@ case "$ACTION" in
     get_data_timestamp
     ;;
   run)
-    if speedtest --accept-license --accept-gdpr -f json > "${DATA_FILE}.new"
+    if /usr/bin/timeout 5m speedtest --accept-license --accept-gdpr -f json > "${DATA_FILE}.new"
     then
       mv "${DATA_FILE}.new" "$DATA_FILE"
     fi
