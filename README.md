@@ -4,6 +4,11 @@
 
 - [bc](https://www.gnu.org/software/bc/manual/html_mono/bc.html)
 - [jq](https://stedolan.github.io/jq/)
+- [speedtest-cli](https://www.speedtest.net/apps/cli)
+
+## ⚠️ Warning
+
+You need to install [Ookla's version of speedtest-cli](https://www.speedtest.net/apps/cli) and *NOT* the unofficial python tool.
 
 ## Installation (Generic x86_64)
 
