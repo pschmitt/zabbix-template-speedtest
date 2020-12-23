@@ -11,6 +11,7 @@ usage() {
   echo "-d: Display last measured download speed"
   echo "-j: Display last measured jitter"
   echo "-p: Display last measured ping latency"
+  echo "-l: Display last measured latency"
   echo "-t: Display last measurement timestamp"
   echo "-s: Display last server used for measurements"
   echo "-m X: Fail/don't display data if it is older than X seconds"
@@ -28,6 +29,10 @@ get_data_timestamp() {
 
 get_last_ping_time() {
   jq -r '.ping.latency' "$DATA_FILE"
+}
+
+get_last_latency_time() {
+  jq -r '.latency' "$DATA_FILE"
 }
 
 get_last_jitter_time() {
@@ -99,6 +104,10 @@ do
       ACTION=show_ping
       shift
       ;;
+    -l|--latency)
+      ACTION=show_timestamp
+      shift
+      ;;
     -s|--server)
       ACTION=show_server
       shift
@@ -159,6 +168,9 @@ case "$ACTION" in
     ;;
   show_timestamp)
     get_data_timestamp
+    ;;
+  show_latency)
+    get_data_latency
     ;;
   run)
     if speedtest --accept-license --accept-gdpr -f json > "${DATA_FILE}.new"
