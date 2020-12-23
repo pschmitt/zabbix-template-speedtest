@@ -62,6 +62,18 @@
                     <request_method>POST</request_method>
                 </item>
                 <item>
+                    <name>Speedtest - Latency</name>
+                    <key>speedtest.latency</key>
+                    <delay>5m</delay>
+                    <value_type>FLOAT</value_type>
+                    <units>ms</units>
+                    <applications>
+                        <application>
+                            <name>Bandwidth</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
                     <name>Speedtest - Server</name>
                     <key>speedtest.server</key>
                     <delay>5m</delay>
