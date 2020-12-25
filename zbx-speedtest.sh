@@ -31,9 +31,9 @@ get_last_ping_time() {
   jq -r '.ping.latency' "$DATA_FILE"
 }
 
-get_last_latency_time() {
-  jq -r '.ping.latency' "$DATA_FILE"
-}
+#get_last_latency_time() {
+#  jq -r '.ping.latency' "$DATA_FILE"
+#}
 
 get_last_jitter_time() {
   jq -r '.ping.jitter' "$DATA_FILE"
