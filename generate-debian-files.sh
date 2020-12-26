@@ -10,6 +10,7 @@ DEB_SCRIPT=./zbx-speedtest-debian.sh
 sed 's|#!/usr/bin/env sh|#!/usr/bin/env bash|' "$ORIG_SCRIPT" \
   > "$DEB_SCRIPT"
 sed -i "1 a $WARNING" "$DEB_SCRIPT"
+chmod +x "$DEB_SCRIPT"
 
 # systemd service
 ORIG_SERVICE=./systemd/zabbix-speedtest.service
